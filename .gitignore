@@ -1,0 +1,12 @@
+# Папки
+/node_modules/
+/build/
+/dist/
+
+# Файлы
+*.log
+*.tmp
+.env
+
+# Конкретный файл
+config.json
