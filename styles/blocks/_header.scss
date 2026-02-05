@@ -1,0 +1,112 @@
+@use '../helpers' as *;
+
+.header {
+   display: grid;
+   grid-template-columns: 0.6fr 1fr 0.6fr;
+   column-gap: 10px;
+   align-items: center;
+   max-width: calc(var(--container-width) + var(--container-padding-x));
+   min-height: 115px;
+   margin-inline: auto;
+   padding-inline: var(--container-padding-x);
+   padding-block: 26px;
+
+   @include mobile {
+      grid-template-columns: 0.5fr 1.5fr;
+   }
+
+   &__logo {
+      width: 120px;
+   }
+
+   &__image {
+      object-fit: cover;
+   }
+
+   &::after {
+      content: '';
+      margin-top: 26px;
+      grid-column: 1/4;
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-dark-one);
+   }
+
+   &-menu {
+      @include fluid-text(20, 16);
+      @include mobile {
+         @include visually-hidden;
+      }
+
+      &__list {
+         display: flex;
+         justify-content: center;
+         column-gap: 35px;
+
+         @include tablet {
+            column-gap: 20px;
+         }
+      }
+   }
+
+   &__button {
+      display: flex;
+
+      &-wrapper {
+         display: flex;
+         justify-content: end;
+         column-gap: 30px;
+      }
+
+      @include hover {
+         & > *::after {
+            color: var(--color-dark-one);
+         }
+      }
+
+      &-cart {
+         position: relative;
+
+         &::before,
+         &::after {
+            content: '';
+            position: absolute;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition-duration: var(--transition-duration);
+         }
+
+         &::before {
+            @include square(30px);
+
+            top: -12px;
+            left: 13px;
+            background-color: var(--color-light);
+         }
+
+         &::after {
+            @include square(24px);
+
+            content: '6';
+            top: -10px;
+            left: 15px;
+            background-color: var(--color-accent);
+         }
+      }
+
+      &-end {
+         display: flex;
+         column-gap: 6px;
+         min-width: 100px;
+         color: var(--color-light);
+         font-weight: 500;
+
+         &:not(.header__button-mobile-end) {
+            @include visually-hidden;
+         }
+      }
+   }
+
+}

@@ -1,17 +1,49 @@
 @use "helpers" as *;
 
 @font-face {
-   font-family: 'Space Grotesk';
-   src: url('../fonts/SpaceGrotesk-Regular.woff2') format('woff2');
+   font-family: 'Cera Pro';
+   src: url('../fonts/CeraPro-Black.woff2') format('woff2');
+   font-weight: 700;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'Cera Pro';
+   src: url('../fonts/CeraPro-Bold.woff2') format('woff2');
+   font-weight: 600;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'Cera Pro';
+   src: url('../fonts/CeraPro-Medium.woff2') format('woff2');
+   font-weight: 500;
+   font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'Cera Pro';
+   src: url('../fonts/CeraPro-Regular.woff2') format('woff2');
    font-weight: 400;
    font-style: normal;
    font-display: swap;
 }
 
 @font-face {
-   font-family: 'Space Grotesk';
-   src: url('../fonts/SpaceGrotesk-Medium.woff2') format('woff2');
-   font-weight: 500;
+   font-family: 'Cera Pro';
+   src: url('../fonts/CeraPro-Light.woff2') format('woff2');
+   font-weight: 300;
    font-style: normal;
+   font-display: swap;
+}
+
+@font-face {
+   font-family: 'Cera Pro';
+   src: url('../fonts/CeraPro-Italic.woff2') format('woff2');
+   font-weight: 400;
+   font-style: italic;
    font-display: swap;
 }

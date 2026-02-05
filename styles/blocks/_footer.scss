@@ -1,0 +1,19 @@
+@use '../helpers' as *;
+
+.footer {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr;
+    margin-top: var(--section-padding-y);
+    padding-bottom: 12px;
+
+    @include mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 12px;
+    }
+
+    &__copyright {
+        text-align: center;
+    }
+}

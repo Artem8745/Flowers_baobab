@@ -1,4 +1,4 @@
-@use "helpers" as *;
+@use "./helpers" as *;
 
 body {
    @include fluid-text(18, 16);

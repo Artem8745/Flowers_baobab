@@ -4,3 +4,15 @@
 @use "utils";
 @use "varibles";
 
+@use "./blocks/section";
+@use "./blocks/button";
+@use "./blocks/button-close";
+
+@use "./blocks/header";
+@use "./blocks/footer";
+@use "./blocks/menu-mobile";
+@use "./blocks/bunner";
+@use "./blocks/about-us";
+
+@use "./blocks/catalog";
+@use "./blocks/catalog-card";

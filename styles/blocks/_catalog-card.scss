@@ -1,0 +1,108 @@
+@use "../helpers" as *;
+
+.catalog-cart {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 10px;
+    background-color: var(--color-gray-alt);
+    border-radius: var(--border-radius-medium);
+    transition-duration: var(--transition-duration);
+    border: 1px solid transparent;
+
+    @include hover {
+        transform: scale(1.1);
+        border: var(--border-bg-edging);
+    }
+
+    &__discount {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        padding: 8px 12px;
+        background-color: var(--color-accent);
+        border-top-left-radius: var(--border-radius-medium);
+        border-bottom-right-radius: var(--border-radius-medium);
+        color: var(--color-light);
+    }
+
+    &__like {
+        @include square(30px);
+
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        @include hover {
+            color: var(--color-accent-right);
+        }
+    }
+
+    &__image {
+        height: 100%;
+        object-fit: contain;
+        aspect-ratio: 1;
+
+        &-wrapper {
+            max-height: 225px;
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 14px;
+    }
+
+    &__description {
+        display: grid;
+        grid-auto-columns: min-content;
+        column-gap: 10px;
+        row-gap: 4px;
+    }
+
+    &__title {
+        @include fluid-text(16, 14);
+
+        grid-column: 1/3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 1.3;
+        max-height: 2.6em;
+        font-weight: 400;
+    }
+
+    &__current-price {
+        @include fluid-text(18, 16);
+
+        grid-column: 1;
+        color: var(--color-dark-one);
+        font-weight: 600;
+    }
+
+    &__old-price {
+        grid-column: 2;
+        color: var(--color-gray-old-price);
+        text-decoration: line-through;
+    }
+
+    &__button {
+        @include fluid-text(16, 14);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 8px;
+
+        @include hover {
+            background-color: var(--color-light);
+            border: var(--border-bg-edging);
+            color: var(--color-dark-two);
+            fill: var(--color-accent);
+        }
+    }
+}

@@ -1,0 +1,30 @@
+@use "../helpers" as *;
+
+.button-close {
+   @include square(40px);
+
+   position: absolute;
+   top: 30px;
+   right: 40px;
+   display: flex;
+   border-radius: 50%;
+   background-color: var(--color-dark-three);
+   cursor: pointer;
+
+   &__row {
+      @include abs-center();
+      position: absolute;
+      width: 22px;
+      height: 2px;
+      border-radius: 10px;
+      background-color: var(--color-light);
+
+      &:last-child {
+         transform: rotate(45deg);
+      }
+
+      &:first-child {
+         transform: rotate(-45deg);
+      }
+   }
+}

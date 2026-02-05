@@ -1,0 +1,75 @@
+@use "../helpers" as *;
+
+.catalog {
+    display: flex;
+    column-gap: 55px;
+
+    &__sidebar {
+        flex: 0 0 100%;
+        flex-direction: column;
+        max-width: 20%;
+
+        &-wrapper {
+            min-height: 800px;
+            padding: 14px 18px;
+            background-color: var(--color-gray-alt);
+            border: var(--border-bg-edging);
+            border-radius: var(--border-radius-medium);
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 40px;
+        width: 80%;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__filter-list {
+        display: flex;
+        column-gap: 40px;
+    }
+
+    &__filter-item {
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            translate: -50% 0%;
+            display: block;
+            background-color: var(--color-accent);
+            width: 0;
+            height: 1px;
+            transition: all var(--transition-duration) ease-in-out;
+        }
+
+        @include hover {
+            &::after {
+                width: 100%;
+            }
+        }
+        
+        &.__active::after {
+            width: 100%;
+        }
+
+        &.__active button {
+            color: var(--color-accent);
+        }
+    }
+
+    &__carts {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 48px 24px;
+        width: 100%;
+    }
+}

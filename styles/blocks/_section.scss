@@ -1,0 +1,15 @@
+@use '../helpers' as *;
+
+.section {
+    &__title {
+        @include fluid-text(38, 30);
+
+        margin-bottom: 26px;
+        font-weight: 600;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: var(--section-padding-y);
+        letter-spacing: -0.02em;
+    }
+}

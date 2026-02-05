@@ -1,0 +1,60 @@
+@use '../helpers' as *;
+
+.about-us {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    column-gap: 20px;
+    padding: 35px;
+    background-color: var(--color-gray-alt);
+    border: var(--border-bg-edging);
+    border-radius: var(--border-radius-medium);
+
+    @include tablet {
+        flex-direction: column;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        row-gap: 18px;
+        max-width: 511px;
+
+        @include tablet {
+            display: contents;
+        }
+    }
+
+    &__title {
+        order: 1;
+
+        @include tablet {
+            margin-bottom: 22px;
+        }
+    }
+
+    &__description {
+        height: 100%;
+        order: 3;
+
+        @include tablet {
+            margin-bottom: 30px;
+        }
+    }
+
+    &__button {
+        display: inline;
+         
+        &-wrapper {
+            order: 4;
+        }
+    }
+
+    &__images-wrapper {
+        order: 2;
+
+        @include tablet {
+            margin-bottom: 12px;
+        }
+    }
+}

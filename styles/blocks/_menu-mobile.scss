@@ -1,0 +1,95 @@
+@use "../helpers" as *;
+
+.menu-mobile {
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: 100%;
+   height: 100%;
+   padding: 20px;
+   color: var(--color-dark-one);
+   background-color: var(--color-gray-alt);
+   transition-duration: var(--transition-duration);
+   z-index: 10;
+
+   &:not(._active) {
+      right: 100%;
+   }
+
+   &__list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 12px;
+   }
+
+   &__item {
+      display: inline-flex;
+      font-size: 24px;
+   }
+
+   &-burger-button {
+      @include reset-button;
+      @include square(32px);
+
+      position: relative;
+      display: none;
+      flex-direction: column;
+      align-self: flex-start;
+      row-gap: 6px;
+      z-index: 11;
+
+      @include mobile {
+         display: flex;
+      }
+
+      & span {
+         position: absolute;
+         top: 50%;
+         width: 30px;
+         height: 2px;
+         background-color: var(--color-dark-one);
+         transform: translate(0%, -50%);
+         transition-duration: var(--transition-duration);
+      }
+
+      & span:first-child {
+         top: 20%;
+      }
+
+      & span:nth-child(2) {
+         transition: transform 0.5s ease 1.5s;
+      }
+
+      & span:last-child {
+         top: 80%;
+      }
+
+      &._active {
+         & span {
+            top: 50%;
+            row-gap: 0;
+         }
+
+         & span:first-child {
+            top: 50%;
+            transform: rotate(-45deg);
+         }
+
+         & span:nth-child(2) {
+            top: 50%;
+            transform: rotate(-45deg);
+            transition: transform var(--transition-duration) ease-in-out;
+         }
+
+         & span:last-child {
+            transform: rotate(45deg);
+         }
+      }
+
+      @include mobile-above {
+         & :not(._active) {
+            @include visually-hidden;
+         }
+      }
+   }
+}
