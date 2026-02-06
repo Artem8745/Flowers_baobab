@@ -1,0 +1,100 @@
+@use "../helpers" as *;
+
+.filters {
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+
+    &-wrapper {
+        padding: 14px 18px;
+        background-color: var(--color-gray-alt);
+        border: var(--border-bg-edging);
+        border-radius: var(--border-radius-medium);
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 28px;
+    }
+
+    &-group {
+        display: flex;
+        flex-direction: column;
+
+        &__title {
+            @include fluid-text(18, 16);
+
+            font-weight: 600;
+        }
+
+        &__option {
+            @include fluid-text(15, 14);
+        }
+
+        &__input[type=checkbox] {
+            @include visually-hidden;
+        }
+
+        &__option:has(input[type=checkbox]:checked) {
+            color: var(--color-accent);
+            font-weight: 400;
+        }
+    }
+
+    &-price-range {
+
+        &-wrapper {
+            min-height: 20px;
+            position: relative;
+        }
+
+        &__track {
+            position: absolute;
+            top: 50%;
+            translate: 0 -30%;
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background-color: var(--color-accent-transparent);
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0%;
+                right: 60%;
+                height: 100%;
+                border-radius: 3px;
+                background-color: var(--color-accent);
+            }
+        }
+
+        &__sidebar {
+            position: absolute;
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            // pointer-events: none;
+
+            &-min {
+                z-index: 3;
+            }
+
+            &-max {
+                z-index: 2;
+            }
+        }
+
+        &__sidebar::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--color-light);
+            border-radius: 50%;
+            background-color: var(--color-accent);
+            pointer-events: auto;
+        }
+    }
+}

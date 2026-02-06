@@ -8,14 +8,7 @@
         flex: 0 0 100%;
         flex-direction: column;
         max-width: 20%;
-
-        &-wrapper {
-            min-height: 800px;
-            padding: 14px 18px;
-            background-color: var(--color-gray-alt);
-            border: var(--border-bg-edging);
-            border-radius: var(--border-radius-medium);
-        }
+        overflow-y: auto;
     }
 
     &__body {

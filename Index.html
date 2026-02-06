@@ -147,14 +147,137 @@
          <div class="section__body container">
             <div class="catalog">
                <aside class="catalog__sidebar filters">
-                  <div class="catalog__sidebar-wrapper">
+                  <div class="filters-wrapper">
 
                      <form class="filters__form" role="search" aria-label="Фильтрация каталога">
                         <h2 class="filters__title visually-hidden">Фильтры</h2>
-                        <fieldset class="filters__group">
-                           <span class="filters__title visually-hidden">Фильтр по</span>
-                           <span class="filters__title">Категория</span>
+                        <fieldset class="filters-group">
+                           <legend class="filters-group__title">
+                              <span class="visually-hidden">Фильтр по</span>
+                              <span>Категория</span>
+                           </legend>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="domashnie rasteniya">
+                              <span class="filters-group__label">Домашние растения</span>
+                              <span class="filters-group__count" aria-label="23 товара">(23)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="gorshechnye rasteniya">
+                              <span class="filters-group__label">Горшечные растения</span>
+                              <span class="filters-group__count" aria-label="12 товаров">(12)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="semena">
+                              <span class="filters-group__label">Семена</span>
+                              <span class="filters-group__count" aria-label="65 товаров">(65)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="malenkie rasteniya">
+                              <span class="filters-group__label">Маленькие растения</span>
+                              <span class="filters-group__count" aria-label="39 товаров">(39)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="bolshie rasteniya">
+                              <span class="filters-group__label">Большие растения</span>
+                              <span class="filters-group__count" aria-label="23 товара">(23)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="sukkulenty">
+                              <span class="filters-group__label">Суккуленты</span>
+                              <span class="filters-group__count" aria-label="17 товаров">(17)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="terrariumy">
+                              <span class="filters-group__label">Террариумы</span>
+                              <span class="filters-group__count" aria-label="19 товаров">(19)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="category" value="terrariumy">
+                              <span class="filters-group__label">Садоводство</span>
+                              <span class="filters-group__count" aria-label="13 товаров">(13)</span>
+                           </label>
                         </fieldset>
+                        <fieldset class="filters-group">
+                           <legend class="filters-group__title">
+                              <span class="visually-hidden">Фильтровать по</span>
+                              <span>Диапозон цены</span>
+                           </legend>
+                           <label class="filters-group__option filters-group__price-range filters-price-range">
+                              <div class="filters-price-range-wrapper">
+                                 <div class="filters-price-range__track"></div>
+                                 <input
+                                    type="range"
+                                    class="filters-group__input filters-price-range__sidebar filters-price-range__sidebar-min"
+                                    name="min-price-range"
+                                    min="39"
+                                    max="12300"
+                                    step="50"
+                                    value="39"
+                                    aria-label="Диапозон цен"
+                                 >
+                                 <input
+                                    type="range"
+                                    class="filters-group__input filters-price-range__sidebar filters-price-range__sidebar-max"
+                                    name="max-price-range"
+                                    min="39"
+                                    max="12300"
+                                    step="50"
+                                    value="5000"
+                                    aria-label="Диапозон цен"
+                                 >
+                              </div>
+                              <label class="filters-group__label">
+                                 <span>Цена:</span>
+                                 <div class="filters-price-range__group">
+                                    <span>₽</span>
+                                    <input
+                                       type="number"
+                                       class="filters-price-range__min-price"
+                                       name="min-price"
+                                       min="39"
+                                       max="12300"
+                                       value="39"
+                                       aria-label="Минимальная цена"
+                                    >
+                                 </div>
+                                 <span>-</span>
+                                 <div class="filters-price-range__group">
+                                    <span>₽</span>
+                                    <input
+                                       type="number"
+                                       class="filters-price-range__min-price"
+                                       name="max-price"
+                                       min="39"
+                                       max="12300"
+                                       value="12300"
+                                       aria-label="Минимальная цена"
+                                    >
+                                 </div>
+                              </label>
+                           </label>
+                        </fieldset>
+                        <fieldset class="filters-group">
+                           <legend class="filters-group__title">
+                              <span class="visually-hidden">Фильтровать по</span>
+                              <span>Размер</span>
+                           </legend>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="size" value="malenkiy">
+                              <span>Маленький</span>
+                              <span class="filters-group__count" aria-label="119 товаров">(119)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="size" value="sredniy">
+                              <span>Средний</span>
+                              <span class="filters-group__count" aria-label="86 товаров">(86)</span>
+                           </label>
+                           <label class="filters-group__option">
+                              <input type="checkbox" class="filters-group__input" name="size" value="bolshoy">
+                              <span>Большой</span>
+                              <span class="filters-group__count" aria-label="78 товаров">(78)</span>
+                           </label>
+                        </fieldset>
+                        <button class="filters__button" type="button">Применить</button>
                      </form>
 
                   </div>

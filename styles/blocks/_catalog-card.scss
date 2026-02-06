@@ -38,6 +38,10 @@
         @include hover {
             color: var(--color-accent-right);
         }
+
+        &_active {
+            color: var(--color-accent-right);
+        }
     }
 
     &__image {
