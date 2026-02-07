@@ -329,7 +329,7 @@ svg * {
   --color-gray-alt: #F8F8F8;
   --color-gray-bg: #E4E4E4;
   --color-gray-old-price: #A5A5A5;
-  --border: 1px solid var(--color-dark);
+  --border: 1px solid var(--color-dark-one);
   --border-bg-edging: 1px solid var(--color-gray-bg);
   --border-radius-small: 7px;
   --border-radius: 14px;
@@ -922,13 +922,13 @@ svg * {
 .filters-price-range__track {
   position: absolute;
   top: 50%;
-  translate: 0 -30%;
-  width: 100%;
+  translate: 0 -50%;
+  width: 99%;
   height: 6px;
   border-radius: 3px;
   background-color: var(--color-accent-transparent);
 }
-.filters-price-range__track::before {
+.filters-price-range__track span {
   content: "";
   position: absolute;
   left: 0%;
@@ -940,15 +940,11 @@ svg * {
 .filters-price-range__sidebar {
   position: absolute;
   width: 100%;
+  margin: 0;
   -webkit-appearance: none;
   appearance: none;
   background-color: transparent;
-}
-.filters-price-range__sidebar-min {
-  z-index: 3;
-}
-.filters-price-range__sidebar-max {
-  z-index: 2;
+  pointer-events: none;
 }
 .filters-price-range__sidebar::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -959,6 +955,29 @@ svg * {
   border-radius: 50%;
   background-color: var(--color-accent);
   pointer-events: auto;
+}
+.filters-price-range__group-inputs {
+  display: flex;
+  column-gap: 4px;
+}
+.filters-price-range__price-input {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-size: clamp(0.875rem, 0.8533653846rem + 0.0961538462vw, 0.9375rem);
+  padding: 4px;
+  border: var(--border);
+  border-radius: var(--border-radius-small);
+}
+@media (hover: hover) {
+  .filters-price-range__price-input:hover {
+    border-color: var(--color-accent);
+  }
+}
+@media (hover: none) {
+  .filters-price-range__price-input:active {
+    border-color: var(--color-accent);
+  }
 }
 
 .catalog-cart {
@@ -1030,7 +1049,7 @@ svg * {
 }
 .catalog-cart__description {
   display: grid;
-  grid-auto-columns: min-content;
+  grid-auto-columns: min-content 1fr;
   column-gap: 10px;
   row-gap: 4px;
 }

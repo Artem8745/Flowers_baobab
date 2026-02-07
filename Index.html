@@ -204,14 +204,15 @@
                            </legend>
                            <label class="filters-group__option filters-group__price-range filters-price-range">
                               <div class="filters-price-range-wrapper">
-                                 <div class="filters-price-range__track"></div>
+                                 <div class="filters-price-range__track">
+                                    <span></span>
+                                 </div>
                                  <input
                                     type="range"
                                     class="filters-group__input filters-price-range__sidebar filters-price-range__sidebar-min"
                                     name="min-price-range"
                                     min="39"
                                     max="12300"
-                                    step="50"
                                     value="39"
                                     aria-label="Диапозон цен"
                                  >
@@ -221,37 +222,37 @@
                                     name="max-price-range"
                                     min="39"
                                     max="12300"
-                                    step="50"
                                     value="5000"
                                     aria-label="Диапозон цен"
                                  >
                               </div>
                               <label class="filters-group__label">
                                  <span>Цена:</span>
-                                 <div class="filters-price-range__group">
-                                    <span>₽</span>
-                                    <input
-                                       type="number"
-                                       class="filters-price-range__min-price"
-                                       name="min-price"
-                                       min="39"
-                                       max="12300"
-                                       value="39"
-                                       aria-label="Минимальная цена"
-                                    >
-                                 </div>
-                                 <span>-</span>
-                                 <div class="filters-price-range__group">
-                                    <span>₽</span>
-                                    <input
-                                       type="number"
-                                       class="filters-price-range__min-price"
-                                       name="max-price"
-                                       min="39"
-                                       max="12300"
-                                       value="12300"
-                                       aria-label="Минимальная цена"
-                                    >
+                                 <div class="filters-price-range__group-inputs">
+                                    <div class="filters-price-range__group">
+                                       <span>От</span>
+                                       <input
+                                          type="number"
+                                          class="filters-price-range__price-input filters-price-range__min-price"
+                                          name="min-price"
+                                          min="39"
+                                          max="12300"
+                                          value="39"
+                                          aria-label="Минимальная цена"
+                                       >
+                                    </div>
+                                    <div class="filters-price-range__group">
+                                       <span>До</span>
+                                       <input
+                                          type="number"
+                                          class="filters-price-range__price-input filters-price-range__max-price"
+                                          name="max-price"
+                                          min="39"
+                                          max="12300"
+                                          value="12300"
+                                          aria-label="Минимальная цена"
+                                       >
+                                    </div>
                                  </div>
                               </label>
                            </label>
