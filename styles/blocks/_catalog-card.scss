@@ -16,6 +16,11 @@
         border: var(--border-bg-edging);
     }
 
+    &:active {
+        transform: scale(1);
+        border: 1px solid transparent;
+    }
+
     &__discount {
         position: absolute;
         top: 0;

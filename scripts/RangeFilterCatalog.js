@@ -16,14 +16,22 @@ export default class rangeCatalog {
 
     init() {
         this.filterWrapper.addEventListener('click', (element) => {
-            if (element.srcElement.classList.contains('filters-price-range__sidebar-min') == true) {
+            if (element.target.classList.contains('filters-price-range__sidebar-min') == true) {
                 this.updateValue()
-            } else if (element.srcElement.classList.contains('filters-price-range__sidebar-max') == true) {
+            } else if (element.target.classList.contains('filters-price-range__sidebar-max') == true) {
                 this.updateValue()
             }
         })
 
         this.filterWrapper.oninput = () => {
+            this.updateValue()
+            this.updateToggle()
+            this.updateTrack()
+            this.updateGapToggle()
+            this.upgradeInput()
+        }
+
+        this.filterWrapper.ontouchmove = () => {
             this.updateValue()
             this.updateToggle()
             this.updateTrack()
@@ -81,7 +89,12 @@ export default class rangeCatalog {
     upgradeInput() {
         if (this.maxValue - this.minValue < this.lenToggleGap) {
             if (this.inputMin === document.activeElement) {
-                this.inputMax.value = this.minValue + this.lenToggleGap
+                if (this.maxRange < this.inputMax) {
+                    this.inputMax.value = this.minValue
+                    this.inputMin.value = this.inputMax.value - this.lenToggleGap
+                } else {
+                    this.inputMax.value = Number(this.minValue + this.lenToggleGap)
+                }
             } else {
                 this.inputMin.value = this.maxValue - this.lenToggleGap
             }

@@ -824,7 +824,7 @@ svg * {
   display: flex;
   flex-direction: column;
   row-gap: 40px;
-  width: 80%;
+  width: 100%;
 }
 .catalog__header {
   display: flex;
@@ -870,6 +870,11 @@ svg * {
   grid-template-columns: repeat(4, 1fr);
   gap: 48px 24px;
   width: 100%;
+}
+@media (max-width: 1024px) {
+  .catalog__carts {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .filters {
@@ -979,6 +984,10 @@ svg * {
     border-color: var(--color-accent);
   }
 }
+.filters__button {
+  display: flex;
+  justify-content: center;
+}
 
 .catalog-cart {
   position: relative;
@@ -1002,6 +1011,10 @@ svg * {
     transform: scale(1.1);
     border: var(--border-bg-edging);
   }
+}
+.catalog-cart:active {
+  transform: scale(1);
+  border: 1px solid transparent;
 }
 .catalog-cart__discount {
   position: absolute;
