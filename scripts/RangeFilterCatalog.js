@@ -10,6 +10,8 @@ export default class rangeCatalog {
 
         this.inputMin = document.querySelector('.filters-price-range__min-price')
         this.inputMax = document.querySelector('.filters-price-range__max-price')
+        this.inputMinValue = Number(this.inputMin.value)
+        this.inputMaxValue = Number(this.inputMax.value)
 
         this.init()
     }
@@ -18,13 +20,24 @@ export default class rangeCatalog {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             this.updateValueTouch()
             this.updateToggle()
+            this.upgradeInput()
 
             this.filterWrapper.oninput = (event) => {
                 this.updateGapToggleTouch(event)
                 this.updateTrack(event)
-            }
+                this.checkNumberAccuracy()
 
-            this.upgradeInputTouch()
+                // console.log(
+                //     "minValue:", Number(this.minValue),
+                //     "maxValue:", Number(this.maxValue),
+                //     "minToggle:", Number(this.minToggle.value),
+                //     "maxToggle:", Number(this.maxToggle.value),
+                //     "maxRange:", Number(this.maxRange),
+                //     "minRange:", Number(this.minRange),
+                //     "inputMin:", Number(this.inputMinValue),
+                //     "inputMax:", Number(this.inputMaxValue)
+                // )
+            }
         } else {
             this.filterWrapper.oninput = () => {
                 this.updateValue()
@@ -32,19 +45,10 @@ export default class rangeCatalog {
                 this.updateTrack()
                 this.updateGapToggle()
                 this.upgradeInput()
+                this.checkNumberAccuracy()
+                this.updateInputData()
             }
         }
-
-        console.log(
-            // "minValue:", Number(this.minValue),
-            // "maxValue:", Number(this.maxValue),
-            // "minToggle:", Number(this.minToggle.value),
-            // "maxToggle:", Number(this.maxToggle.value),
-            // "maxRange:", Number(this.maxRange),
-            // "minRange:", Number(this.minRange),
-            // "inputMin:", Number(this.inputMin.value),
-            // "inputMax:", Number(this.inputMax.value)
-        )
 
         this.updateValue()
     }
@@ -66,8 +70,8 @@ export default class rangeCatalog {
             this.maxValue = this.maxRange
         }
 
-        this.inputMin.value = Number(this.minValue)
-        this.inputMax.value = Number(this.maxValue)
+        this.inputMinValue = this.minValue
+        this.inputMaxValue = this.maxValue
     }
 
     updateValueTouch() {
@@ -75,22 +79,28 @@ export default class rangeCatalog {
             if (this.maxValue - this.minValue <= this.lenToggleGap) {
                 this.minToggle.value = this.maxValue - this.lenToggleGap
             }
+
+            this.updateInputData()
         })
         
         this.maxToggle.addEventListener('touchmove', () => {
             this.minValue = Number(this.minToggle.value)
             this.maxValue = Number(this.maxToggle.value)
 
-            this.inputMin.value = Number(this.minValue)
-            this.inputMax.value = Number(this.maxValue)
+            this.inputMinValue = this.minValue
+            this.inputMaxValue = this.maxValue
+
+            this.updateInputData()
         })
 
         this.minToggle.addEventListener('touchmove', () => {
             this.minValue = Number(this.minToggle.value)
             this.maxValue = Number(this.maxToggle.value)
 
-            this.inputMin.value = Number(this.minValue)
-            this.inputMax.value = Number(this.maxValue)
+            this.inputMinValue = this.minValue
+            this.inputMaxValue = this.maxValue
+
+            this.updateInputData()
         })
     }
 
@@ -132,62 +142,59 @@ export default class rangeCatalog {
     }
 
     upgradeInput() {
-        if (this.maxValue - this.minValue < this.lenToggleGap) {
-            if (this.inputMin === document.activeElement) {
-                if (this.maxRange < this.inputMax) {
-                    this.inputMax.value = Number(this.minValue)
-                    this.inputMin.value = Number(this.inputMax.value - this.lenToggleGap)
-                } else {
-                    this.inputMax.value = Number(this.minValue + this.lenToggleGap)
-                }
-            } else {
-                this.inputMin.value = this.maxValue - this.lenToggleGap
-            }
-        }
-    }
-
-    upgradeInputTouch() {
         this.inputMin.addEventListener('input', () => {
+            this.inputMinValue = Number(this.inputMin.value)
+
             this.minToggle.value = this.inputMin.value
-            this.minValue = this.inputMin.value
+            this.minValue = this.inputMinValue
 
             if (this.maxValue - this.minValue <= this.lenToggleGap) {
-                this.maxValue = Number(this.inputMin.value + Number(this.lenToggleGap))
-                this.inputMax.value = Number(this.inputMin.value + this.lenToggleGap)
+                this.maxValue = this.inputMinValue + this.lenToggleGap
+                this.inputMaxValue = this.inputMinValue + this.lenToggleGap
+                this.maxToggle.value = this.inputMinValue + this.lenToggleGap
 
-                this.inputMin.value = Number(this.minToggle.value)
+                this.inputMinValue = Number(this.minToggle.value)
             }
 
             this.checkNumberAccuracy()
+            this.updateInputData()
         })
 
         this.inputMax.addEventListener('input', () => {
-            this.maxToggle.value = Number(this.inputMax.value)
-            this.maxValue = this.maxToggle.value
-            this.inputMax.value = this.maxToggle.value
+            this.inputMaxValue = Number(this.inputMax.value)
+
+            this.maxToggle.value = this.inputMaxValue
+            this.maxValue = this.inputMaxValue
+            this.inputMaxValue = this.inputMaxValue
 
             this.checkNumberAccuracy()
+            this.updateInputData()
         })
     }
 
     checkNumberAccuracy() {
-        if (Number(this.inputMin.value) >= this.maxRange) {
-            this.inputMin.value = this.inputMin.value - this.lenToggleGap
-            this.minValue = this.inputMin.value - this.lenToggleGap
-            this.minToggle.value = this.inputMin.value - this.lenToggleGap
+        if (this.inputMinValue >= this.maxRange) {
+            this.inputMinValue = this.inputMinValue - this.lenToggleGap
+            this.minValue = this.inputMinValue - this.lenToggleGap
+            this.minToggle.value = this.inputMinValue - this.lenToggleGap
         }
 
-        if (Number(this.inputMin.value >= Number(this.inputMax.value))) {
-            this.inputMin.value = Number(this.inputMax.value) - this.lenToggleGap
-            this.minValue = Number(this.inputMax.value) - this.lenToggleGap
-            this.minToggle.value = Number(this.inputMax.value) - this.lenToggleGap
+        if (this.inputMinValue >= this.inputMaxValue) {
+            this.inputMinValue = this.inputMaxValue - this.lenToggleGap
+            this.minValue = this.inputMaxValue - this.lenToggleGap
+            this.minToggle.value = this.inputMaxValue - this.lenToggleGap
         }
 
-        if (Number(this.inputMax.value) > this.maxRange) {
-            this.inputMax.value = this.maxRange
+        if (this.inputMaxValue > this.maxRange) {
+            this.inputMaxValue = this.maxRange
             this.maxValue = this.maxRange
             this.maxToggle.value = this.maxRange
         }
+    }
+
+    updateInputData() {
+        this.inputMin.value = this.inputMinValue
+        this.inputMax.value = this.inputMaxValue
     }
 }
 
