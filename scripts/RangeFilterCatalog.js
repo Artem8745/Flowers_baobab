@@ -15,29 +15,36 @@ export default class rangeCatalog {
     }
 
     init() {
-        this.filterWrapper.addEventListener('click', (element) => {
-            if (element.target.classList.contains('filters-price-range__sidebar-min') == true) {
-                this.updateValue()
-            } else if (element.target.classList.contains('filters-price-range__sidebar-max') == true) {
-                this.updateValue()
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            this.updateValueTouch()
+            this.updateToggle()
+
+            this.filterWrapper.oninput = (event) => {
+                this.updateGapToggleTouch(event)
+                this.updateTrack(event)
             }
-        })
 
-        this.filterWrapper.oninput = () => {
-            this.updateValue()
-            this.updateToggle()
-            this.updateTrack()
-            this.updateGapToggle()
-            this.upgradeInput()
+            this.upgradeInputTouch()
+        } else {
+            this.filterWrapper.oninput = () => {
+                this.updateValue()
+                this.updateToggle()
+                this.updateTrack()
+                this.updateGapToggle()
+                this.upgradeInput()
+            }
         }
 
-        this.filterWrapper.ontouchmove = () => {
-            this.updateValue()
-            this.updateToggle()
-            this.updateTrack()
-            this.updateGapToggle()
-            this.upgradeInput()
-        }
+        console.log(
+            // "minValue:", Number(this.minValue),
+            // "maxValue:", Number(this.maxValue),
+            // "minToggle:", Number(this.minToggle.value),
+            // "maxToggle:", Number(this.maxToggle.value),
+            // "maxRange:", Number(this.maxRange),
+            // "minRange:", Number(this.minRange),
+            // "inputMin:", Number(this.inputMin.value),
+            // "inputMax:", Number(this.inputMax.value)
+        )
 
         this.updateValue()
     }
@@ -63,6 +70,30 @@ export default class rangeCatalog {
         this.inputMax.value = Number(this.maxValue)
     }
 
+    updateValueTouch() {
+        this.maxToggle.addEventListener('touchmove', () => {
+            if (this.maxValue - this.minValue <= this.lenToggleGap) {
+                this.minToggle.value = this.maxValue - this.lenToggleGap
+            }
+        })
+        
+        this.maxToggle.addEventListener('touchmove', () => {
+            this.minValue = Number(this.minToggle.value)
+            this.maxValue = Number(this.maxToggle.value)
+
+            this.inputMin.value = Number(this.minValue)
+            this.inputMax.value = Number(this.maxValue)
+        })
+
+        this.minToggle.addEventListener('touchmove', () => {
+            this.minValue = Number(this.minToggle.value)
+            this.maxValue = Number(this.maxToggle.value)
+
+            this.inputMin.value = Number(this.minValue)
+            this.inputMax.value = Number(this.maxValue)
+        })
+    }
+
     updateTrack() {
         const minPercent = this.minValue / this.maxRange * 100
         const maxPercent = 100 - this.maxValue / this.maxRange * 100
@@ -72,8 +103,10 @@ export default class rangeCatalog {
     }
 
     updateToggle() {
-        this.minToggle.value = this.minValue
-        this.maxToggle.value = this.maxValue
+        if (this.inputMin === document.activeElement | this.inputMax === document.activeElement) {
+            this.minToggle.value = this.minValue
+            this.maxToggle.value = this.maxValue
+        }
     }
 
     updateGapToggle() {
@@ -86,18 +119,74 @@ export default class rangeCatalog {
         }
     }
 
+    updateGapToggleTouch(event) {
+        if (this.maxValue - this.minValue <= this.lenToggleGap) {
+            if (event.target.classList.contains('filters-price-range__sidebar-min') == true) {
+                this.maxToggle.value = this.minValue + this.lenToggleGap
+            } else {
+                this.minToggle.value = this.maxValue - this.lenToggleGap
+            }
+        }
+
+        this.checkNumberAccuracy()
+    }
+
     upgradeInput() {
         if (this.maxValue - this.minValue < this.lenToggleGap) {
             if (this.inputMin === document.activeElement) {
                 if (this.maxRange < this.inputMax) {
-                    this.inputMax.value = this.minValue
-                    this.inputMin.value = this.inputMax.value - this.lenToggleGap
+                    this.inputMax.value = Number(this.minValue)
+                    this.inputMin.value = Number(this.inputMax.value - this.lenToggleGap)
                 } else {
                     this.inputMax.value = Number(this.minValue + this.lenToggleGap)
                 }
             } else {
                 this.inputMin.value = this.maxValue - this.lenToggleGap
             }
+        }
+    }
+
+    upgradeInputTouch() {
+        this.inputMin.addEventListener('input', () => {
+            this.minToggle.value = this.inputMin.value
+            this.minValue = this.inputMin.value
+
+            if (this.maxValue - this.minValue <= this.lenToggleGap) {
+                this.maxValue = Number(this.inputMin.value + Number(this.lenToggleGap))
+                this.inputMax.value = Number(this.inputMin.value + this.lenToggleGap)
+
+                this.inputMin.value = Number(this.minToggle.value)
+            }
+
+            this.checkNumberAccuracy()
+        })
+
+        this.inputMax.addEventListener('input', () => {
+            this.maxToggle.value = Number(this.inputMax.value)
+            this.maxValue = this.maxToggle.value
+            this.inputMax.value = this.maxToggle.value
+
+            this.checkNumberAccuracy()
+        })
+    }
+
+    checkNumberAccuracy() {
+        if (Number(this.inputMin.value) >= this.maxRange) {
+            this.inputMin.value = this.inputMin.value - this.lenToggleGap
+            this.minValue = this.inputMin.value - this.lenToggleGap
+            this.minToggle.value = this.inputMin.value - this.lenToggleGap
+        }
+
+        if (Number(this.inputMin.value >= Number(this.inputMax.value))) {
+            this.inputMin.value = Number(this.inputMax.value) - this.lenToggleGap
+            this.minValue = Number(this.inputMax.value) - this.lenToggleGap
+            this.minToggle.value = Number(this.inputMax.value) - this.lenToggleGap
+        }
+
+        if (Number(this.inputMax.value) > this.maxRange) {
+            this.inputMax.value = this.maxRange
+            this.maxValue = this.maxRange
+            this.maxToggle.value = this.maxRange
         }
     }
 }
