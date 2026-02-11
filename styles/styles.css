@@ -1094,6 +1094,7 @@ svg * {
   align-items: center;
   justify-content: center;
   column-gap: 8px;
+  padding: 8px 8px;
 }
 @media (hover: hover) {
   .catalog-cart__button:hover {
