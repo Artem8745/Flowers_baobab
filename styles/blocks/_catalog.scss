@@ -1,13 +1,19 @@
 @use "../helpers" as *;
 
 .catalog {
+    position: relative;
     display: flex;
     column-gap: 55px;
+
+    @include tablet {
+        column-gap: 30px;
+    }
 
     &__sidebar {
         flex: 0 0 100%;
         flex-direction: column;
         max-width: 20%;
+        min-width: 240px;
         overflow-y: auto;
     }
 
@@ -21,6 +27,39 @@
     &__header {
         display: flex;
         justify-content: space-between;
+
+        @include tablet {
+            display: grid;
+            grid-template-columns: 30px repeat(2, 1fr);
+            column-gap: 20px;
+        }
+
+        @include mobile {
+            grid-template-columns: 30px 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            row-gap: 20px;
+        }
+    }
+
+    &__filters-mobile-list {
+        display: flex;
+        align-items: center;
+
+        @include tablet-above {
+            @include visually-hidden;
+        }
+    }
+    
+    &__filters-mobile-button {
+        fill: var(--color-dark-one);
+
+        @include hover {
+            fill: var(--color-accent);
+        }
+
+        &.__active {
+            fill: var(--color-accent);
+        }
     }
 
     &__filter-list {
@@ -65,8 +104,12 @@
         gap: 48px 24px;
         width: 100%;
 
-        @include tablet {
+        @include mobile {
             grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include mobile-s {
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }

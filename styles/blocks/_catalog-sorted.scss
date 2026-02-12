@@ -1,0 +1,11 @@
+@use "../helpers" as *;
+
+.catalog__sorted {
+    display: flex;
+    justify-content: end;
+
+    @include mobile {
+        grid-column: 1/3;
+        justify-content: start;
+    }
+}
