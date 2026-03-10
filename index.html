@@ -147,6 +147,28 @@
          <div class="section__body container">
             <div class="catalog">
                <aside class="catalog__sidebar filters">
+
+                  <div class="filters__filter">
+                     <ul class="catalog__filters-mobile-list">
+                        <li class="catalog_filters-mobile-item">
+                           <button class="catalog__filters-mobile-button button button-across" type="button">
+                              <svg width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.5A3.502 3.502 0 0 0 18.355 8H21a1 1 0 1 0 0-2h-2.645a3.502 3.502 0 0 0-6.71 0H3a1 1 0 0 0 0 2h8.645A3.502 3.502 0 0 0 15 10.5zM3 16a1 1 0 1 0 0 2h2.145a3.502 3.502 0 0 0 6.71 0H21a1 1 0 1 0 0-2h-9.145a3.502 3.502 0 0 0-6.71 0H3z"/></svg>
+                           </button>
+                        </li>
+                     </ul>
+                     <ul class="catalog__filter-list">
+                        <li class="catalog__filter-item __active" data-tab-index="1">
+                           <button class="catalog__filter-button button button-across button-active" type="button">Все растения</button>
+                        </li>
+                        <li class="catalog__filter-item" data-tab-index="2">
+                           <button class="catalog__filter-button button button-across button-active" type="button">Новые</button>
+                        </li>
+                        <li class="catalog__filter-item" data-tab-index="3">
+                           <button class="catalog__filter-button button button-across button-active" type="button">Скидка</button>
+                        </li>
+                     </ul>
+                  </div>
+
                   <div class="filters-wrapper">
 
                      <form class="filters__form" role="search" aria-label="Фильтрация каталога">
@@ -278,13 +300,22 @@
                               <span class="filters-group__count" aria-label="78 товаров">(78)</span>
                            </label>
                         </fieldset>
-                        <button class="filters__button button" type="button">Применить</button>
+                        <div class="filters__button-wrapper">
+                           <button class="filters__button button" type="button">Применить</button>
+                        </div>
                      </form>
 
                   </div>
                </aside>
                <div class="catalog__body">
                   <header class="catalog__header">
+                     <ul class="catalog__filters-mobile-list">
+                        <li class="catalog_filters-mobile-item">
+                           <button class="catalog__filters-mobile-button button button-across" type="button">
+                              <svg width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.5A3.502 3.502 0 0 0 18.355 8H21a1 1 0 1 0 0-2h-2.645a3.502 3.502 0 0 0-6.71 0H3a1 1 0 0 0 0 2h8.645A3.502 3.502 0 0 0 15 10.5zM3 16a1 1 0 1 0 0 2h2.145a3.502 3.502 0 0 0 6.71 0H21a1 1 0 1 0 0-2h-9.145a3.502 3.502 0 0 0-6.71 0H3z"/></svg>
+                           </button>
+                        </li>
+                     </ul>
                      <ul class="catalog__filter-list">
                         <li class="catalog__filter-item __active" data-tab-index="1">
                            <button class="catalog__filter-button button button-across button-active" type="button">Все растения</button>

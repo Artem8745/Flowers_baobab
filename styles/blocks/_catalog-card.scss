@@ -62,7 +62,9 @@
     &__body {
         display: flex;
         flex-direction: column;
+        justify-content: end;
         row-gap: 14px;
+        height: 100%;
     }
 
     &__description {
@@ -86,7 +88,7 @@
     }
 
     &__current-price {
-        @include fluid-text(18, 16);
+        @include fluid-text(16, 14);
 
         grid-column: 1;
         color: var(--color-dark-one);
@@ -94,6 +96,8 @@
     }
 
     &__old-price {
+        @include fluid-text(16, 14);
+
         grid-column: 2;
         color: var(--color-gray-old-price);
         text-decoration: line-through;
@@ -106,6 +110,7 @@
         align-items: center;
         justify-content: center;
         column-gap: 8px;
+        padding: 8px 8px;
 
         @include hover {
             background-color: var(--color-light);

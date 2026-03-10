@@ -5,17 +5,52 @@
     top: 20px;
     height: fit-content;
 
+    @include tablet {
+        position: absolute;
+        top: 66px;
+        left: calc(-100% - 20px);
+        z-index: 4;
+        transition: all var(--transition-duration) ease-in-out;
+    }
+
+    @include mobile-s {
+        position: fixed;
+        top: 0;
+        left: calc(-100% - 20px);
+    }
+
+    @include mobile-s {
+        height: 100vh;
+        min-width: 100%;
+    }
+
+    &__filter {
+        // position: absolute;
+        // top: -60px;
+        width: 100%;
+        height: 60px;
+        background-color: var(--color-gray-bg);
+    }
+
     &-wrapper {
         padding: 14px 18px;
         background-color: var(--color-gray-alt);
         border: var(--border-bg-edging);
         border-radius: var(--border-radius-medium);
+
+        @include mobile-s {
+            height: 100%;
+        }
     }
 
     &__form {
         display: flex;
         flex-direction: column;
         row-gap: 28px;
+
+        @include mobile-s {
+            height: 100%;
+        }
     }
 
     &-group {
@@ -112,5 +147,11 @@
     &__button {
         display: flex;
         justify-content: center;
+        
+        &-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
     }
 }
